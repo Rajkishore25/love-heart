@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Letter For You ❤️</title>
+<style>
+*{box-sizing:border-box} body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+font-family:Georgia,serif;background:linear-gradient(135deg,#fff0f3,#ffe4ec);color:#4a2630;padding:20px}
+.card{text-align:center;max-width:420px;width:100%}
+h1{font-size:25px;font-weight:normal;margin-bottom:30px}
+.envelope{font-size:110px;cursor:pointer;filter:drop-shadow(0 10px 12px #c88);transition:.3s}
+.envelope:hover{transform:scale(1.06)}
+button{border:0;border-radius:30px;padding:13px 25px;background:#9b4056;color:white;font-size:16px;cursor:pointer}
+.letter{display:none;background:#fffaf0;padding:28px;border-radius:8px;box-shadow:0 10px 35px #b77a8a55;text-align:left;line-height:1.8;font-size:17px;animation:open .7s ease}
+@keyframes open{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:none}}
+.small{font-family:Arial,sans-serif;font-size:13px;opacity:.65;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="card">
+<h1 id="title">A little something for you… 💌</h1>
+<div id="start">
+<div class="envelope" onclick="openLetter()">💌</div>
+<button onclick="openLetter()">Open the letter</button>
+<p class="small">Tap the envelope ❤️</p>
+</div>
+<div class="letter" id="letter">
+<p>Sometimes I wish you knew how special you are to me, but at the same time, I’m okay keeping these feelings quietly in my heart. There’s something about you that makes ordinary moments feel different, and somehow, just seeing you can make my entire day better. I don’t know where these feelings will take me, and maybe I’ll never find the courage to say everything I feel, but I want you to know that somewhere in this world, there’s someone who genuinely cares about you, silently admires you, and loves you more than you probably realize. ❤️</p>
+</div>
+</div>
+<script>
+function openLetter(){
+ document.getElementById('start').style.display='none';
+ document.getElementById('title').textContent='For you ❤️';
+ document.getElementById('letter').style.display='block';
+}
+</script>
+</body>
+</html>
