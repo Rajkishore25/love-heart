@@ -1,4 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Letter For You ❤️</title>
+
 <style>
+
+/* =========================
+   YOUR ORIGINAL DESIGN
+   ========================= */
+
 * {
     box-sizing: border-box;
 }
@@ -6,240 +20,232 @@
 body {
     margin: 0;
     min-height: 100vh;
-    overflow: hidden;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     font-family: Georgia, serif;
-    color: #fff;
+
+    background: linear-gradient(
+        135deg,
+        #fff0f3,
+        #ffe4ec
+    );
+
+    color: #4a2630;
 
     padding: 20px;
 
-    background:
-        radial-gradient(circle at 50% 40%, #5a2639 0%, #321521 38%, #170b12 75%, #0d070b 100%);
+    overflow: hidden;
 }
-
-/* soft romantic glow */
-
-body::before {
-    content: "";
-    position: fixed;
-    width: 500px;
-    height: 500px;
-
-    left: 50%;
-    top: 45%;
-
-    transform: translate(-50%, -50%);
-
-    background: radial-gradient(
-        circle,
-        rgba(255, 90, 130, 0.18),
-        transparent 70%
-    );
-
-    filter: blur(25px);
-    pointer-events: none;
-}
-
-/* Card */
 
 .card {
     position: relative;
     z-index: 10;
 
-    width: 100%;
-    max-width: 440px;
-
-    padding: 38px 28px;
-
     text-align: center;
 
-    background: rgba(255, 255, 255, 0.08);
-
-    border: 1px solid rgba(255, 255, 255, 0.16);
-
-    border-radius: 28px;
-
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.45),
-        inset 0 1px 1px rgba(255,255,255,0.12);
+    max-width: 420px;
+    width: 100%;
 }
-
-/* Heading */
 
 h1 {
-    margin: 0 0 10px;
-
-    font-size: 27px;
+    font-size: 25px;
     font-weight: normal;
-
-    letter-spacing: 0.3px;
-
-    text-shadow:
-        0 2px 15px rgba(255, 100, 140, 0.35);
+    margin-bottom: 30px;
 }
 
-.subtitle {
-    margin: 0 0 30px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 14px;
-    line-height: 1.6;
-
-    color: rgba(255,255,255,0.72);
-}
-
-/* Envelope */
+/* =========================
+   ENVELOPE ANIMATION
+   ========================= */
 
 .envelope {
-    display: inline-block;
-
-    font-size: 125px;
+    font-size: 110px;
 
     cursor: pointer;
 
-    filter:
-        drop-shadow(0 0 12px rgba(255,100,140,0.35))
-        drop-shadow(0 18px 25px rgba(0,0,0,0.35));
+    display: inline-block;
 
-    animation:
-        gentleFloat 3s ease-in-out infinite;
+    filter: drop-shadow(
+        0 10px 12px #c88
+    );
 
-    transition: transform 0.3s ease;
+    transition: .3s;
 }
+
+/* Normal hover */
 
 .envelope:hover {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
 
-.envelope:active {
-    transform: scale(0.94);
+/* Envelope opening animation */
+
+.envelope.opening {
+    animation: envelopeOpening 0.8s ease forwards;
 }
 
-@keyframes gentleFloat {
+@keyframes envelopeOpening {
 
-    0%,100% {
-        transform: translateY(0);
+    0% {
+        transform:
+            scale(1)
+            rotate(0deg);
+        opacity: 1;
     }
 
-    50% {
-        transform: translateY(-9px);
+    20% {
+        transform:
+            scale(1.08)
+            rotate(-5deg);
+    }
+
+    40% {
+        transform:
+            scale(1.15)
+            rotate(5deg);
+    }
+
+    65% {
+        transform:
+            scale(0.95)
+            rotate(-3deg);
+    }
+
+    100% {
+        transform:
+            scale(0.2)
+            translateY(-35px)
+            rotate(8deg);
+
+        opacity: 0;
     }
 }
 
-/* Button */
+
+/* =========================
+   BUTTON
+   ========================= */
 
 button {
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 0;
 
-    border-radius: 40px;
+    border-radius: 30px;
 
-    padding: 14px 28px;
+    padding: 13px 25px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #a82f55,
-            #d45b7c
-        );
+    background: #9b4056;
 
     color: white;
-
-    font-family: Georgia, serif;
 
     font-size: 16px;
 
     cursor: pointer;
 
-    box-shadow:
-        0 10px 30px rgba(180,50,90,0.35);
-
-    transition: all 0.3s ease;
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
 button:hover {
-    transform: translateY(-3px) scale(1.02);
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
 
     box-shadow:
-        0 15px 35px rgba(220,70,110,0.45);
+        0 8px 20px rgba(155,64,86,.3);
 }
 
+button:active {
+
+    transform:
+        scale(.96);
+}
+
+
+/* =========================
+   SMALL TEXT
+   ========================= */
+
 .small {
-    margin-top: 17px;
 
     font-family: Arial, sans-serif;
 
-    font-size: 12px;
+    font-size: 13px;
 
-    color: rgba(255,255,255,0.5);
+    opacity: .65;
+
+    margin-top: 18px;
 }
 
-/* Letter */
+
+/* =========================
+   LETTER
+   ========================= */
 
 .letter {
+
     display: none;
 
-    position: relative;
+    background: #fffaf0;
 
-    background:
-        linear-gradient(
-            135deg,
-            #fffaf1,
-            #fff2f5
-        );
+    padding: 28px;
 
-    color: #4a2630;
+    border-radius: 8px;
 
-    padding: 30px;
-
-    border-radius: 18px;
+    box-shadow:
+        0 10px 35px #b77a8a55;
 
     text-align: left;
 
-    line-height: 1.85;
+    line-height: 1.8;
 
     font-size: 17px;
 
-    box-shadow:
-        0 25px 60px rgba(0,0,0,0.4);
-
     animation:
-        letterReveal 1s cubic-bezier(.17,.67,.32,1.3);
+        letterOpening
+        1s
+        cubic-bezier(.17,.67,.32,1.3);
 }
 
-.letter::before {
-    content: "♥";
 
-    display: block;
+/* Letter animation */
 
-    text-align: center;
+@keyframes letterOpening {
 
-    font-size: 25px;
+    0% {
 
-    margin-bottom: 12px;
-
-    opacity: 0.7;
-}
-
-@keyframes letterReveal {
-
-    from {
         opacity: 0;
+
         transform:
-            translateY(50px)
-            scale(0.85)
-            rotateX(10deg);
+            translateY(60px)
+            scale(.82)
+            rotateX(12deg);
     }
 
-    to {
+    35% {
+
+        opacity: .4;
+
+        transform:
+            translateY(-12px)
+            scale(1.03)
+            rotateX(-3deg);
+    }
+
+    65% {
+
+        transform:
+            translateY(5px)
+            scale(.99);
+    }
+
+    100% {
+
         opacity: 1;
+
         transform:
             translateY(0)
             scale(1)
@@ -247,128 +253,688 @@ button:hover {
     }
 }
 
-/* BALLOONS */
+
+/* =========================
+   BALLOONS
+   ========================= */
 
 .balloon {
+
     position: fixed;
 
     bottom: -180px;
 
-    z-index: 3;
+    z-index: 2;
 
     pointer-events: none;
 
-    font-size: 75px;
+    font-size: 90px;
 
-    filter:
-        drop-shadow(0 8px 12px rgba(0,0,0,0.25));
+    will-change: transform, opacity;
 
     animation:
-        balloonFly linear forwards;
+        balloonFly
+        linear
+        forwards;
 }
+
+
+/* Main balloon flight */
 
 @keyframes balloonFly {
 
     0% {
+
         transform:
             translate3d(0, 0, 0)
             rotate(-8deg)
-            scale(0.8);
+            scale(.75);
 
         opacity: 0;
     }
 
     8% {
+
         opacity: 1;
     }
 
-    25% {
+    20% {
+
         transform:
-            translate3d(55px, -25vh, 0)
-            rotate(8deg)
+            translate3d(70px, -20vh, 0)
+            rotate(10deg)
             scale(1);
     }
 
-    50% {
+    40% {
+
         transform:
-            translate3d(-50px, -52vh, 0)
-            rotate(-8deg)
+            translate3d(-70px, -42vh, 0)
+            rotate(-10deg)
             scale(1.05);
     }
 
-    75% {
+    60% {
+
         transform:
-            translate3d(45px, -78vh, 0)
-            rotate(8deg)
-            scale(1.1);
+            translate3d(80px, -65vh, 0)
+            rotate(9deg)
+            scale(1.08);
+    }
+
+    80% {
+
+        transform:
+            translate3d(-60px, -88vh, 0)
+            rotate(-8deg)
+            scale(1.12);
     }
 
     100% {
+
         transform:
-            translate3d(-20px, -125vh, 0)
-            rotate(-5deg)
+            translate3d(40px, -125vh, 0)
+            rotate(6deg)
             scale(1.15);
 
         opacity: 0;
     }
 }
 
-/* Tiny floating hearts */
 
-.heart {
+/* =========================
+   FLOATING HEARTS
+   ========================= */
+
+.floating-heart {
+
     position: fixed;
 
-    bottom: -30px;
+    bottom: -40px;
 
     z-index: 1;
 
     pointer-events: none;
 
-    opacity: 0.6;
+    opacity: 0;
 
-    animation: heartFloat linear forwards;
+    animation:
+        heartFly
+        linear
+        forwards;
 }
 
-@keyframes heartFloat {
 
-    from {
-        transform: translateY(0) scale(0.8);
+@keyframes heartFly {
+
+    0% {
+
+        transform:
+            translateY(0)
+            scale(.7)
+            rotate(0deg);
+
         opacity: 0;
     }
 
     15% {
-        opacity: 0.7;
+
+        opacity: .7;
     }
 
-    to {
-        transform: translateY(-110vh) scale(1.2);
+    50% {
+
+        transform:
+            translateY(-55vh)
+            translateX(30px)
+            scale(1)
+            rotate(10deg);
+
+        opacity: .6;
+    }
+
+    100% {
+
+        transform:
+            translateY(-115vh)
+            translateX(-30px)
+            scale(1.2)
+            rotate(-10deg);
+
         opacity: 0;
     }
 }
 
-/* Mobile */
 
-@media(max-width:500px) {
+/* =========================
+   SPARKLES
+   ========================= */
 
-    .card {
-        padding: 32px 20px;
+.sparkle {
+
+    position: fixed;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+    font-size: 20px;
+
+    opacity: 0;
+
+    animation:
+        sparkleAnimation
+        2s
+        ease-out
+        forwards;
+}
+
+
+@keyframes sparkleAnimation {
+
+    0% {
+
+        transform:
+            scale(.2)
+            rotate(0deg);
+
+        opacity: 0;
     }
 
-    h1 {
-        font-size: 24px;
+    30% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.2)
+            rotate(90deg);
     }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            scale(.3)
+            rotate(180deg)
+            translateY(-80px);
+    }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 500px) {
 
     .envelope {
-        font-size: 105px;
+        font-size: 95px;
     }
 
     .letter {
-        padding: 23px;
+
         font-size: 16px;
+
+        padding: 23px;
     }
 
     .balloon {
-        font-size: 65px;
+
+        font-size: 75px;
     }
 }
+
 </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     MAIN CONTENT
+     ========================= -->
+
+<div class="card">
+
+
+    <h1 id="title">
+        A little something for you… 💌
+    </h1>
+
+
+    <div id="start">
+
+
+        <!-- ENVELOPE -->
+
+        <div
+            class="envelope"
+            onclick="openLetter()">
+
+            💌
+
+        </div>
+
+
+        <br>
+        <br>
+
+
+        <!-- BUTTON -->
+
+        <button
+            onclick="openLetter()">
+
+            Open the letter
+
+        </button>
+
+
+        <p class="small">
+
+            Tap the envelope ❤️
+
+        </p>
+
+
+    </div>
+
+
+    <!-- =========================
+         LETTER
+         ========================= -->
+
+    <div
+        class="letter"
+        id="letter">
+
+        <p>
+
+            Sometimes I wish you knew how special you are to me,
+            but at the same time, I’m okay keeping these feelings
+            quietly in my heart. There’s something about you that
+            makes ordinary moments feel different, and somehow,
+            just seeing you can make my entire day better.
+
+            I don’t know where these feelings will take me, and
+            maybe I’ll never find the courage to say everything
+            I feel, but I want you to know that somewhere in this
+            world, there’s someone who genuinely cares about you,
+            silently admires you, and loves you more than you
+            probably realize. ❤️
+
+        </p>
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================
+     BACKGROUND MUSIC
+     ========================= -->
+
+<audio
+    id="bgMusic"
+    loop
+    preload="auto">
+
+    <source
+        src="yenti-yenti.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+
+<script>
+
+
+/* =========================
+   OPEN LETTER
+   ========================= */
+
+function openLetter() {
+
+
+    /* Get music */
+
+    const music =
+        document.getElementById("bgMusic");
+
+
+    /*
+       Start song after user interaction.
+
+       Mobile browsers allow this because
+       the function is triggered by the click.
+    */
+
+    music.volume = 0.45;
+
+    music.play().catch(function(error) {
+
+        console.log(
+            "Audio playback blocked:",
+            error
+        );
+
+    });
+
+
+    /* Envelope animation */
+
+    const envelope =
+        document.querySelector(".envelope");
+
+    envelope.classList.add("opening");
+
+
+    /*
+       Wait for envelope animation
+       before showing the letter.
+    */
+
+    setTimeout(function() {
+
+
+        /* Hide starting section */
+
+        document.getElementById("start")
+            .style.display = "none";
+
+
+        /* Change heading */
+
+        document.getElementById("title")
+            .textContent = "For you ❤️";
+
+
+        /* Show letter */
+
+        document.getElementById("letter")
+            .style.display = "block";
+
+
+        /* Balloons */
+
+        launchBalloons();
+
+
+        /* Hearts */
+
+        launchHearts();
+
+
+        /* Sparkles */
+
+        launchSparkles();
+
+
+    }, 550);
+
+}
+
+
+/* =========================
+   BALLOON SYSTEM
+   ========================= */
+
+function launchBalloons() {
+
+
+    /*
+       Number of balloons.
+
+       Increase this if you want
+       an even bigger celebration.
+    */
+
+    const balloonCount = 24;
+
+
+    for (
+        let i = 0;
+        i < balloonCount;
+        i++
+    ) {
+
+
+        const balloon =
+            document.createElement("div");
+
+
+        balloon.className =
+            "balloon";
+
+
+        balloon.textContent =
+            "🎈";
+
+
+        /*
+           Random horizontal position
+        */
+
+        balloon.style.left =
+            Math.random() * 100 + "vw";
+
+
+        /*
+           Random size.
+
+           BIG balloons.
+        */
+
+        balloon.style.fontSize =
+            (65 + Math.random() * 65) + "px";
+
+
+        /*
+           Random speed
+        */
+
+        balloon.style.animationDuration =
+            (5 + Math.random() * 4) + "s";
+
+
+        /*
+           Random delay
+        */
+
+        balloon.style.animationDelay =
+            (Math.random() * 1.8) + "s";
+
+
+        /*
+           Add balloon to page
+        */
+
+        document.body.appendChild(
+            balloon
+        );
+
+
+        /*
+           Remove after animation
+        */
+
+        setTimeout(function() {
+
+            balloon.remove();
+
+        }, 11500);
+
+    }
+
+}
+
+
+/* =========================
+   FLOATING HEARTS
+   ========================= */
+
+function launchHearts() {
+
+
+    const hearts = [
+        "❤️",
+        "💕",
+        "♥",
+        "♡",
+        "💗"
+    ];
+
+
+    for (
+        let i = 0;
+        i < 18;
+        i++
+    ) {
+
+
+        const heart =
+            document.createElement("div");
+
+
+        heart.className =
+            "floating-heart";
+
+
+        heart.textContent =
+            hearts[
+                Math.floor(
+                    Math.random() *
+                    hearts.length
+                )
+            ];
+
+
+        /*
+           Random position
+        */
+
+        heart.style.left =
+            Math.random() * 100 + "vw";
+
+
+        /*
+           Random size
+        */
+
+        heart.style.fontSize =
+            (12 + Math.random() * 18) + "px";
+
+
+        /*
+           Random speed
+        */
+
+        heart.style.animationDuration =
+            (5 + Math.random() * 5) + "s";
+
+
+        /*
+           Random delay
+        */
+
+        heart.style.animationDelay =
+            Math.random() * 3 + "s";
+
+
+        document.body.appendChild(
+            heart
+        );
+
+
+        setTimeout(function() {
+
+            heart.remove();
+
+        }, 11000);
+
+    }
+
+}
+
+
+/* =========================
+   SPARKLE EFFECT
+   ========================= */
+
+function launchSparkles() {
+
+
+    const sparkleSymbols = [
+        "✦",
+        "✧",
+        "✨",
+        "♥"
+    ];
+
+
+    /*
+       Create sparkles around
+       the letter.
+    */
+
+    for (
+        let i = 0;
+        i < 18;
+        i++
+    ) {
+
+
+        const sparkle =
+            document.createElement("div");
+
+
+        sparkle.className =
+            "sparkle";
+
+
+        sparkle.textContent =
+            sparkleSymbols[
+                Math.floor(
+                    Math.random() *
+                    sparkleSymbols.length
+                )
+            ];
+
+
+        sparkle.style.left =
+            (20 + Math.random() * 60) + "vw";
+
+
+        sparkle.style.top =
+            (25 + Math.random() * 50) + "vh";
+
+
+        sparkle.style.animationDelay =
+            Math.random() * 1.2 + "s";
+
+
+        document.body.appendChild(
+            sparkle
+        );
+
+
+        setTimeout(function() {
+
+            sparkle.remove();
+
+        }, 3500);
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
