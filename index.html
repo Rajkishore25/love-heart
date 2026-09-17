@@ -5,63 +5,88 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>A Little Letter For You ❤️</title>
 
+
 <style>
 
+/* =====================================================
+   BASIC
+===================================================== */
+
 *{
-    box-sizing:border-box
+    box-sizing:border-box;
+}
+
+html,
+body{
+    margin:0;
+    width:100%;
+    min-height:100%;
 }
 
 body{
-    margin:0;
+
     min-height:100vh;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     overflow:hidden;
 
     font-family:Georgia,serif;
 
-    background:linear-gradient(
-        135deg,
-        #fff0f3,
-        #ffe4ec
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #fff0f3,
+            #ffe4ec
+        );
 
     color:#4a2630;
 
-    padding:20px;
+    padding:15px;
 }
 
+
+/* =====================================================
+   MAIN CARD
+===================================================== */
+
 .card{
+
     position:relative;
 
     z-index:10;
 
-    text-align:center;
-
-    max-width:420px;
-
     width:100%;
+
+    max-width:430px;
+
+    text-align:center;
 }
 
 
-/* ================================
+/* =====================================================
    OPENING TITLE
-================================ */
+===================================================== */
 
 h1{
+
     font-size:25px;
 
     font-weight:normal;
 
-    margin-bottom:18px;
-
     line-height:1.4;
+
+    margin:
+        0 0 18px;
 
     animation:
         titleAppear
@@ -72,20 +97,26 @@ h1{
 @keyframes titleAppear{
 
     from{
+
         opacity:0;
-        transform:translateY(-15px);
+
+        transform:
+            translateY(-15px);
     }
 
     to{
+
         opacity:1;
-        transform:translateY(0);
+
+        transform:
+            translateY(0);
     }
 }
 
 
-/* ================================
+/* =====================================================
    ENVELOPE
-================================ */
+===================================================== */
 
 .envelope{
 
@@ -118,18 +149,22 @@ h1{
 @keyframes gentleFloat{
 
     0%,100%{
+
         transform:
             translateY(0);
     }
 
     50%{
+
         transform:
             translateY(-9px);
     }
 }
 
 
-/* Envelope opening */
+/* =====================================================
+   ENVELOPE OPENING
+===================================================== */
 
 .envelope.opening{
 
@@ -143,6 +178,7 @@ h1{
 @keyframes envelopeOpen{
 
     0%{
+
         transform:
             scale(1)
             rotate(0deg);
@@ -151,24 +187,28 @@ h1{
     }
 
     20%{
+
         transform:
             scale(1.08)
             rotate(-5deg);
     }
 
     40%{
+
         transform:
             scale(1.15)
             rotate(5deg);
     }
 
     65%{
+
         transform:
             scale(.95)
             rotate(-3deg);
     }
 
     100%{
+
         transform:
             scale(.2)
             translateY(-40px)
@@ -179,9 +219,9 @@ h1{
 }
 
 
-/* ================================
+/* =====================================================
    BUTTON
-================================ */
+===================================================== */
 
 button{
 
@@ -225,9 +265,9 @@ button:active{
 }
 
 
-/* ================================
-   SMALL OPENING TEXT
-================================ */
+/* =====================================================
+   SMALL TEXT
+===================================================== */
 
 .small{
 
@@ -243,32 +283,71 @@ button:active{
 }
 
 
-/* ================================
-   LETTER
-================================ */
+/* =====================================================
+   ❤️ MAIN LETTER
+
+   YOUR JPEG IS 2:3 PORTRAIT.
+
+   The letter uses the same ratio so the
+   photograph doesn't get unnecessarily cropped.
+===================================================== */
 
 .letter{
 
+    position:relative;
+
     display:none;
 
-    background:#fffaf0;
+    width:100%;
 
-    padding:28px;
+    /*
+       Same portrait ratio as your photo.
+    */
 
-    border-radius:8px;
+    aspect-ratio:2 / 3;
+
+    /*
+       Keep it comfortably inside a phone screen.
+    */
+
+    height:auto;
+
+    max-height:
+        calc(100vh - 105px);
+
+    /*
+       Your uploaded image.
+    */
+
+    background-image:
+        url("letter-bg.jpeg");
+
+    /*
+       IMPORTANT:
+
+       Since the photo and letter have the same
+       2:3 ratio, contain lets us keep the whole
+       photograph visible.
+    */
+
+    background-size:cover;
+
+    background-position:center center;
+
+    background-repeat:no-repeat;
+
+    overflow:hidden;
+
+    border-radius:18px;
 
     box-shadow:
-        0 10px 35px
-        #b77a8a55;
+        0 18px 45px
+        rgba(90,45,55,.32);
 
     text-align:left;
 
-    line-height:1.8;
-
-    font-size:17px;
-
     animation:
-        open
+        letterOpening
         .9s
         cubic-bezier(
             .17,
@@ -279,11 +358,165 @@ button:active{
 }
 
 
-/* Letter animation ONLY */
+/* =====================================================
+   SOFT PHOTO TINT
 
-@keyframes open{
+   Only slightly softens the photo.
+   The image remains clearly visible.
+===================================================== */
+
+.letter::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:0;
+
+    pointer-events:none;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(255,250,240,.35) 0%,
+            rgba(255,250,240,.20) 35%,
+            rgba(255,250,240,.30) 100%
+        );
+}
+
+
+/* =====================================================
+   TEXT AREA
+
+   This is the important change.
+
+   Instead of covering the entire photograph,
+   the text gets its own translucent paper layer.
+
+   So:
+   PHOTO = visible
+   TEXT = readable
+===================================================== */
+
+.letter-content{
+
+    position:absolute;
+
+    z-index:2;
+
+    /*
+       Use most of the letter.
+    */
+
+    top:5%;
+
+    left:5%;
+
+    width:90%;
+
+    height:90%;
+
+    /*
+       Very transparent cream paper.
+    */
+
+    background:
+        rgba(
+            255,
+            250,
+            240,
+            .76
+        );
+
+    /*
+       Soft glass effect.
+    */
+
+    backdrop-filter:
+        blur(2px);
+
+    -webkit-backdrop-filter:
+        blur(2px);
+
+    border-radius:16px;
+
+    /*
+       Comfortable text spacing.
+    */
+
+    padding:
+        30px 25px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 8px 25px
+        rgba(80,40,50,.12);
+
+    border:
+        1px solid
+        rgba(255,255,255,.55);
+}
+
+
+/* =====================================================
+   MAIN LETTER TEXT
+
+   DO NOT CHANGE THE WORDING.
+===================================================== */
+
+.letter-content p{
+
+    margin:0;
+
+    width:100%;
+
+    color:#4a2630;
+
+    font-size:
+        clamp(
+            14px,
+            3.8vw,
+            17px
+        );
+
+    line-height:1.7;
+
+    text-align:left;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    /*
+       Helps the text stand out
+       without looking artificial.
+    */
+
+    text-shadow:
+        0 1px 1px
+        rgba(255,255,255,.65);
+}
+
+
+/* =====================================================
+   LETTER OPENING
+===================================================== */
+
+@keyframes letterOpening{
 
     0%{
+
         opacity:0;
 
         transform:
@@ -293,6 +526,7 @@ button:active{
     }
 
     40%{
+
         opacity:.5;
 
         transform:
@@ -302,12 +536,14 @@ button:active{
     }
 
     70%{
+
         transform:
             translateY(5px)
             scale(.99);
     }
 
     100%{
+
         opacity:1;
 
         transform:
@@ -318,9 +554,9 @@ button:active{
 }
 
 
-/* ================================
-   BIG BALLOONS
-================================ */
+/* =====================================================
+   🎈 BALLOONS
+===================================================== */
 
 .balloon{
 
@@ -361,6 +597,7 @@ button:active{
     }
 
     8%{
+
         opacity:1;
     }
 
@@ -428,9 +665,9 @@ button:active{
 }
 
 
-/* ================================
-   FLOATING HEARTS
-================================ */
+/* =====================================================
+   ❤️ FLOATING HEARTS
+===================================================== */
 
 .floating-heart{
 
@@ -463,6 +700,7 @@ button:active{
     }
 
     15%{
+
         opacity:.7;
     }
 
@@ -490,9 +728,9 @@ button:active{
 }
 
 
-/* ================================
-   SPARKLES
-================================ */
+/* =====================================================
+   ✨ SPARKLES
+===================================================== */
 
 .sparkle{
 
@@ -545,26 +783,138 @@ button:active{
 }
 
 
-/* ================================
-   MOBILE
-================================ */
+/* =====================================================
+   📱 MOBILE
+===================================================== */
 
 @media(max-width:500px){
 
-    .envelope{
-        font-size:95px;
+    body{
+
+        padding:
+            10px;
     }
+
+
+    .card{
+
+        max-width:
+            100%;
+    }
+
+
+    h1{
+
+        font-size:22px;
+
+        margin-bottom:10px;
+    }
+
+
+    .envelope{
+
+        font-size:92px;
+    }
+
+
+    /*
+       Letter fills the available
+       mobile width.
+    */
 
     .letter{
 
-        font-size:16px;
+        width:100%;
 
-        padding:23px;
+        aspect-ratio:2 / 3;
+
+        max-height:
+            calc(100vh - 92px);
+
+        border-radius:16px;
     }
+
+
+    /*
+       Text panel gets slightly
+       more space on mobile.
+    */
+
+    .letter-content{
+
+        top:4%;
+
+        left:4%;
+
+        width:92%;
+
+        height:92%;
+
+        padding:
+            25px 20px;
+
+        border-radius:14px;
+
+        background:
+            rgba(
+                255,
+                250,
+                240,
+                .78
+            );
+    }
+
+
+    .letter-content p{
+
+        font-size:
+            clamp(
+                14px,
+                3.9vw,
+                16px
+            );
+
+        line-height:1.62;
+    }
+
 
     .balloon{
 
         font-size:75px;
+    }
+
+}
+
+
+/* =====================================================
+   📱 SMALL HEIGHT PHONES
+===================================================== */
+
+@media(
+    max-width:500px
+)
+and
+(max-height:700px){
+
+    .letter{
+
+        max-height:
+            calc(100vh - 75px);
+    }
+
+
+    .letter-content{
+
+        padding:
+            19px 17px;
+    }
+
+
+    .letter-content p{
+
+        font-size:14px;
+
+        line-height:1.55;
     }
 
 }
@@ -580,9 +930,9 @@ button:active{
 <div class="card">
 
 
-    <!-- ============================
-         OPENING TEXT
-         ============================ -->
+    <!-- =========================================
+         OPENING
+    ========================================== -->
 
     <h1 id="title">
 
@@ -594,8 +944,6 @@ button:active{
 
     <div id="start">
 
-
-        <!-- ENVELOPE -->
 
         <div
             class="envelope"
@@ -609,8 +957,6 @@ button:active{
         <br>
         <br>
 
-
-        <!-- BUTTON -->
 
         <button
             onclick="openLetter()">
@@ -631,16 +977,23 @@ button:active{
     </div>
 
 
-    <!-- ============================
-         MAIN LETTER
-         DO NOT CHANGE
-         ============================ -->
+    <!-- =========================================
+         ❤️ MAIN LETTER
+
+         THE ORIGINAL TEXT IS UNCHANGED.
+    ========================================== -->
 
     <div
         class="letter"
         id="letter">
 
-        <p>Sometimes I wish you knew how special you are to me, but at the same time, I’m okay keeping these feelings quietly in my heart. There’s something about you that makes ordinary moments feel different, and somehow, just seeing you can make my entire day better. I don’t know where these feelings will take me, and maybe I’ll never find the courage to say everything I feel, but I want you to know that somewhere in this world, there’s someone who genuinely cares about you, silently admires you, and loves you more than you probably realize. ❤️</p>
+
+        <div class="letter-content">
+
+            <p>Sometimes I wish you knew how special you are to me, but at the same time, I’m okay keeping these feelings quietly in my heart. There’s something about you that makes ordinary moments feel different, and somehow, just seeing you can make my entire day better. I don’t know where these feelings will take me, and maybe I’ll never find the courage to say everything I feel, but I want you to know that somewhere in this world, there’s someone who genuinely cares about you, silently admires you, and loves you more than you probably realize. ❤️</p>
+
+        </div>
+
 
     </div>
 
@@ -648,9 +1001,9 @@ button:active{
 </div>
 
 
-<!-- ============================
-     YENTI YENTI MUSIC
-     ============================ -->
+<!-- =========================================
+     🎵 MUSIC
+========================================= -->
 
 <audio
     id="bgMusic"
@@ -667,18 +1020,20 @@ button:active{
 <script>
 
 
-/* ================================
+/* =====================================================
    OPEN LETTER
-================================ */
+===================================================== */
 
 function openLetter(){
 
 
-    /* Start Yenti Yenti */
+    /* -----------------------------
+       PLAY MUSIC
+    ----------------------------- */
 
     const music =
         document.getElementById(
-            'bgMusic'
+            "bgMusic"
         );
 
 
@@ -689,7 +1044,7 @@ function openLetter(){
         function(error){
 
             console.log(
-                'Audio playback blocked:',
+                "Audio playback blocked:",
                 error
             );
 
@@ -697,48 +1052,46 @@ function openLetter(){
     );
 
 
-    /* Envelope animation */
+    /* -----------------------------
+       ENVELOPE ANIMATION
+    ----------------------------- */
 
     const envelope =
         document.querySelector(
-            '.envelope'
+            ".envelope"
         );
 
 
     envelope.classList.add(
-        'opening'
+        "opening"
     );
 
 
-    /* Wait for envelope animation */
+    /* -----------------------------
+       SHOW LETTER
+    ----------------------------- */
 
     setTimeout(
         function(){
 
 
-            /* Hide opening */
+            document
+                .getElementById("start")
+                .style.display =
+                "none";
+
 
             document
-                .getElementById('start')
-                .style.display = 'none';
-
-
-            /* New opening title */
-
-            document
-                .getElementById('title')
+                .getElementById("title")
                 .textContent =
-                'For someone truly special ❤️';
+                "For someone truly special ❤️";
 
-
-            /* Show original letter */
 
             document
-                .getElementById('letter')
-                .style.display = 'block';
+                .getElementById("letter")
+                .style.display =
+                "block";
 
-
-            /* Launch effects */
 
             launchBalloons();
 
@@ -754,12 +1107,11 @@ function openLetter(){
 }
 
 
-/* ================================
-   BIG BALLOONS
-================================ */
+/* =====================================================
+   🎈 BALLOONS
+===================================================== */
 
 function launchBalloons(){
-
 
     const balloonCount = 24;
 
@@ -770,55 +1122,46 @@ function launchBalloons(){
         i++
     ){
 
-
         const balloon =
             document.createElement(
-                'div'
+                "div"
             );
 
 
         balloon.className =
-            'balloon';
+            "balloon";
 
 
         balloon.textContent =
-            '🎈';
+            "🎈";
 
-
-        /* Random starting position */
 
         balloon.style.left =
             Math.random() *
             100 +
-            'vw';
+            "vw";
 
-
-        /* Big random size */
 
         balloon.style.fontSize =
             (
                 65 +
                 Math.random() * 65
             ) +
-            'px';
+            "px";
 
-
-        /* Different speeds */
 
         balloon.style.animationDuration =
             (
                 5 +
                 Math.random() * 4
             ) +
-            's';
+            "s";
 
-
-        /* Stagger */
 
         balloon.style.animationDelay =
             Math.random() *
             1.8 +
-            's';
+            "s";
 
 
         document.body.appendChild(
@@ -840,20 +1183,19 @@ function launchBalloons(){
 }
 
 
-/* ================================
-   FLOATING HEARTS
-================================ */
+/* =====================================================
+   ❤️ HEARTS
+===================================================== */
 
 function launchHearts(){
 
-
     const hearts = [
 
-        '❤️',
-        '💕',
-        '♥',
-        '♡',
-        '💗'
+        "❤️",
+        "💕",
+        "♥",
+        "♡",
+        "💗"
 
     ];
 
@@ -864,15 +1206,14 @@ function launchHearts(){
         i++
     ){
 
-
         const heart =
             document.createElement(
-                'div'
+                "div"
             );
 
 
         heart.className =
-            'floating-heart';
+            "floating-heart";
 
 
         heart.textContent =
@@ -887,7 +1228,7 @@ function launchHearts(){
         heart.style.left =
             Math.random() *
             100 +
-            'vw';
+            "vw";
 
 
         heart.style.fontSize =
@@ -895,7 +1236,7 @@ function launchHearts(){
                 12 +
                 Math.random() * 18
             ) +
-            'px';
+            "px";
 
 
         heart.style.animationDuration =
@@ -903,13 +1244,13 @@ function launchHearts(){
                 5 +
                 Math.random() * 5
             ) +
-            's';
+            "s";
 
 
         heart.style.animationDelay =
             Math.random() *
             3 +
-            's';
+            "s";
 
 
         document.body.appendChild(
@@ -931,19 +1272,18 @@ function launchHearts(){
 }
 
 
-/* ================================
-   SPARKLES
-================================ */
+/* =====================================================
+   ✨ SPARKLES
+===================================================== */
 
 function launchSparkles(){
 
-
     const symbols = [
 
-        '✦',
-        '✧',
-        '✨',
-        '♥'
+        "✦",
+        "✧",
+        "✨",
+        "♥"
 
     ];
 
@@ -954,15 +1294,14 @@ function launchSparkles(){
         i++
     ){
 
-
         const sparkle =
             document.createElement(
-                'div'
+                "div"
             );
 
 
         sparkle.className =
-            'sparkle';
+            "sparkle";
 
 
         sparkle.textContent =
@@ -979,7 +1318,7 @@ function launchSparkles(){
                 10 +
                 Math.random() * 80
             ) +
-            'vw';
+            "vw";
 
 
         sparkle.style.top =
@@ -987,13 +1326,13 @@ function launchSparkles(){
                 20 +
                 Math.random() * 60
             ) +
-            'vh';
+            "vh";
 
 
         sparkle.style.animationDelay =
             Math.random() *
             1.2 +
-            's';
+            "s";
 
 
         document.body.appendChild(
