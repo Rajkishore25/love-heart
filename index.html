@@ -10,11 +10,10 @@
 
 <title>A Little Letter For You ❤️</title>
 
-
 <style>
 
 /* =========================================================
-   GLOBAL
+   RESET
 ========================================================= */
 
 *{
@@ -34,7 +33,7 @@ body{
 
 body{
 
-    min-height:100vh;
+    overflow:hidden;
 
     font-family:
         Georgia,
@@ -42,8 +41,6 @@ body{
         serif;
 
     color:#4a2630;
-
-    overflow:hidden;
 
     background:
         linear-gradient(
@@ -55,7 +52,7 @@ body{
 
 
 /* =========================================================
-   PAGE SYSTEM
+   PAGE TRANSITION
 ========================================================= */
 
 .page{
@@ -68,12 +65,6 @@ body{
 
     min-height:100vh;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
     opacity:0;
 
     pointer-events:none;
@@ -82,13 +73,11 @@ body{
         translateX(100%);
 
     transition:
-        transform .85s
+        transform 1s
         cubic-bezier(.77,0,.18,1),
 
-        opacity .65s
-        ease;
+        opacity .7s ease;
 }
-
 
 .page.active{
 
@@ -99,7 +88,6 @@ body{
     transform:
         translateX(0);
 }
-
 
 .page.exit-left{
 
@@ -116,8 +104,13 @@ body{
 
 #letterPage{
 
-    padding:
-        10px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:10px;
 
     overflow-y:auto;
 
@@ -131,10 +124,6 @@ body{
 
 
 .card{
-
-    position:relative;
-
-    z-index:10;
 
     width:100%;
 
@@ -166,7 +155,6 @@ h1{
         1s
         ease;
 }
-
 
 @keyframes titleAppear{
 
@@ -206,25 +194,26 @@ h1{
         );
 
     animation:
-        gentleFloat
+        envelopeFloat
         3s
         ease-in-out
         infinite;
 }
 
-
-@keyframes gentleFloat{
+@keyframes envelopeFloat{
 
     0%,100%{
 
         transform:
-            translateY(0);
+            translateY(0)
+            rotate(0);
     }
 
     50%{
 
         transform:
-            translateY(-9px);
+            translateY(-10px)
+            rotate(1deg);
     }
 }
 
@@ -237,18 +226,17 @@ h1{
 
 
 /* =========================================================
-   ENVELOPE OPEN
+   ENVELOPE OPENING
 ========================================================= */
 
 .envelope.opening{
 
     animation:
         envelopeOpen
-        .8s
+        .85s
         ease
         forwards;
 }
-
 
 @keyframes envelopeOpen{
 
@@ -261,32 +249,33 @@ h1{
         opacity:1;
     }
 
-    25%{
+    20%{
 
         transform:
             scale(1.12)
             rotate(-5deg);
     }
 
-    50%{
+    40%{
 
         transform:
-            scale(1.16)
+            scale(1.18)
             rotate(5deg);
     }
 
-    75%{
+    65%{
 
         transform:
-            scale(.8)
+            scale(.9)
             rotate(-3deg);
     }
 
     100%{
 
         transform:
-            scale(.15)
-            translateY(-50px);
+            scale(.08)
+            translateY(-55px)
+            rotate(8deg);
 
         opacity:0;
     }
@@ -309,13 +298,11 @@ button{
     background:
         #9b4056;
 
-    color:#fff;
+    color:white;
 
     font-size:16px;
 
-    font-family:
-        Georgia,
-        serif;
+    font-family:Georgia,serif;
 
     cursor:pointer;
 
@@ -324,7 +311,6 @@ button{
         box-shadow .25s ease;
 }
 
-
 button:hover{
 
     transform:
@@ -332,10 +318,9 @@ button:hover{
         scale(1.04);
 
     box-shadow:
-        0 8px 20px
+        0 9px 22px
         rgba(155,64,86,.3);
 }
-
 
 button:active{
 
@@ -374,8 +359,7 @@ button:active{
 
     width:100%;
 
-    aspect-ratio:
-        2 / 3;
+    aspect-ratio:2 / 3;
 
     max-height:
         calc(100vh - 80px);
@@ -391,27 +375,18 @@ button:active{
 
     overflow:hidden;
 
-    border-radius:18px;
+    border-radius:19px;
 
     box-shadow:
-        0 18px 45px
+        0 22px 55px
         rgba(90,45,55,.32);
 
     animation:
         letterOpening
-        .9s
-        cubic-bezier(
-            .17,
-            .67,
-            .32,
-            1.3
-        );
+        1s
+        cubic-bezier(.17,.67,.32,1.3);
 }
 
-
-/* =========================================================
-   PHOTO SOFTENING
-========================================================= */
 
 .letter::before{
 
@@ -421,15 +396,15 @@ button:active{
 
     inset:0;
 
-    z-index:0;
-
     background:
         linear-gradient(
             180deg,
             rgba(255,250,240,.30),
-            rgba(255,250,240,.18),
+            rgba(255,250,240,.17),
             rgba(255,250,240,.30)
         );
+
+    z-index:0;
 }
 
 
@@ -454,7 +429,7 @@ button:active{
     padding:
         24px 21px;
 
-    border-radius:15px;
+    border-radius:16px;
 
     background:
         rgba(
@@ -472,11 +447,11 @@ button:active{
 
     border:
         1px solid
-        rgba(255,255,255,.55);
+        rgba(255,255,255,.6);
 
     box-shadow:
-        0 8px 25px
-        rgba(80,40,50,.12);
+        0 10px 30px
+        rgba(80,40,50,.13);
 
     display:flex;
 
@@ -491,8 +466,8 @@ button:active{
 
 
 /* =========================================================
-   ORIGINAL LETTER TEXT
-   DO NOT CHANGE
+   MAIN LETTER TEXT
+   EXACT ORIGINAL TEXT
 ========================================================= */
 
 .letter-content p{
@@ -534,17 +509,16 @@ button:active{
     margin-top:16px;
 
     padding:
-        10px 24px;
+        10px 25px;
 
     font-size:15px;
 
     flex-shrink:0;
 
     box-shadow:
-        0 5px 14px
-        rgba(100,40,55,.18);
+        0 6px 16px
+        rgba(100,40,55,.2);
 }
-
 
 .next-button span{
 
@@ -556,7 +530,6 @@ button:active{
         transform .25s ease;
 }
 
-
 .next-button:hover span{
 
     transform:
@@ -565,7 +538,7 @@ button:active{
 
 
 /* =========================================================
-   LETTER ANIMATION
+   LETTER OPENING
 ========================================================= */
 
 @keyframes letterOpening{
@@ -575,9 +548,9 @@ button:active{
         opacity:0;
 
         transform:
-            translateY(60px)
-            scale(.82)
-            rotateX(12deg);
+            translateY(80px)
+            scale(.78)
+            rotateX(15deg);
     }
 
     40%{
@@ -585,9 +558,16 @@ button:active{
         opacity:.5;
 
         transform:
-            translateY(-12px)
-            scale(1.03)
+            translateY(-14px)
+            scale(1.04)
             rotateX(-3deg);
+    }
+
+    70%{
+
+        transform:
+            translateY(5px)
+            scale(.99);
     }
 
     100%{
@@ -604,44 +584,398 @@ button:active{
 
 /* =========================================================
    =========================================================
-   PAGE 2 — PHOTO WALL
+   🎈 REAL CSS BALLOONS
+   =========================================================
+========================================================= */
+
+.party-balloon{
+
+    position:fixed;
+
+    bottom:-170px;
+
+    z-index:80;
+
+    pointer-events:none;
+
+    width:52px;
+
+    height:72px;
+
+    opacity:0;
+
+    will-change:
+        transform,
+        opacity;
+
+    animation:
+        balloonRise
+        var(--duration)
+        cubic-bezier(.2,.7,.2,1)
+        var(--delay)
+        forwards;
+}
+
+
+.balloon-body{
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:48px;
+
+    height:60px;
+
+    border-radius:
+        52% 48% 48% 48%;
+
+    background:
+        var(--balloon-color);
+
+    box-shadow:
+
+        inset
+        -7px -9px 12px
+        rgba(80,20,40,.13),
+
+        inset
+        6px 5px 9px
+        rgba(255,255,255,.3),
+
+        0 8px 14px
+        rgba(70,30,40,.16);
+
+    transform:
+        rotate(-4deg);
+}
+
+
+.balloon-body::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:10px;
+
+    height:14px;
+
+    left:8px;
+
+    top:9px;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.35);
+
+    transform:
+        rotate(-30deg);
+}
+
+
+.balloon-knot{
+
+    position:absolute;
+
+    left:20px;
+
+    top:58px;
+
+    width:9px;
+
+    height:8px;
+
+    background:
+        var(--balloon-color);
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+}
+
+
+.balloon-string{
+
+    position:absolute;
+
+    left:24px;
+
+    top:64px;
+
+    width:1px;
+
+    height:110px;
+
+    background:
+        rgba(110,70,75,.55);
+
+    transform-origin:top;
+
+    animation:
+        stringSwing
+        2.2s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes stringSwing{
+
+    0%,100%{
+
+        transform:
+            rotate(-3deg);
+    }
+
+    50%{
+
+        transform:
+            rotate(3deg);
+    }
+}
+
+
+@keyframes balloonRise{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translate3d(
+                0,
+                0,
+                0
+            )
+            rotate(-5deg)
+            scale(.75);
+    }
+
+    8%{
+
+        opacity:1;
+    }
+
+    25%{
+
+        transform:
+            translate3d(
+                var(--sway1),
+                -25vh,
+                0
+            )
+            rotate(5deg)
+            scale(1);
+    }
+
+    48%{
+
+        transform:
+            translate3d(
+                var(--sway2),
+                -52vh,
+                0
+            )
+            rotate(-5deg)
+            scale(1.04);
+    }
+
+    72%{
+
+        transform:
+            translate3d(
+                var(--sway3),
+                -80vh,
+                0
+            )
+            rotate(6deg)
+            scale(1.08);
+    }
+
+    92%{
+
+        opacity:.85;
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            translate3d(
+                var(--sway4),
+                -125vh,
+                0
+            )
+            rotate(-4deg)
+            scale(1.12);
+    }
+}
+
+
+/* =========================================================
+   ❤️ CELEBRATION HEARTS
+========================================================= */
+
+.floating-heart{
+
+    position:fixed;
+
+    bottom:-50px;
+
+    z-index:79;
+
+    pointer-events:none;
+
+    opacity:0;
+
+    animation:
+        heartRise
+        var(--duration)
+        ease-in-out
+        var(--delay)
+        forwards;
+}
+
+@keyframes heartRise{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            translateY(0)
+            scale(.5);
+    }
+
+    12%{
+
+        opacity:.8;
+    }
+
+    50%{
+
+        transform:
+            translateY(-55vh)
+            translateX(35px)
+            scale(1);
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            translateY(-120vh)
+            translateX(-30px)
+            scale(1.2);
+    }
+}
+
+
+/* =========================================================
+   ✨ SPARKLES
+========================================================= */
+
+.sparkle{
+
+    position:fixed;
+
+    z-index:81;
+
+    pointer-events:none;
+
+    font-size:20px;
+
+    opacity:0;
+
+    animation:
+        sparklePop
+        2.8s
+        ease-out
+        var(--delay)
+        forwards;
+}
+
+@keyframes sparklePop{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+            scale(.2)
+            rotate(0);
+    }
+
+    25%{
+
+        opacity:1;
+
+        transform:
+            scale(1.3)
+            rotate(90deg);
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            scale(.3)
+            rotate(180deg)
+            translateY(-90px);
+    }
+}
+
+
+/* =========================================================
+   =========================================================
+   📸 PAGE 2 — PHOTO WALL
    =========================================================
 ========================================================= */
 
 #galleryPage{
 
+    overflow:hidden;
+
     background:
 
         radial-gradient(
-            circle at 12% 20%,
-            rgba(255,255,255,.9),
-            transparent 18%
+            ellipse at 50% 0%,
+            #ffffff,
+            transparent 35%
         ),
 
         radial-gradient(
-            circle at 88% 75%,
-            rgba(255,170,195,.35),
-            transparent 25%
+            circle at 10% 50%,
+            rgba(255,181,202,.55),
+            transparent 24%
         ),
 
         radial-gradient(
-            circle at 50% 50%,
-            rgba(255,255,255,.4),
-            transparent 45%
+            circle at 90% 75%,
+            rgba(255,194,211,.55),
+            transparent 26%
         ),
 
         linear-gradient(
             135deg,
-            #fff5f7,
-            #ffd9e5
+            #fff7f8,
+            #ffdbe7
         );
-
-    overflow:hidden;
 }
 
 
 /* =========================================================
-   BACKGROUND TEXTURE
+   BACKGROUND LIGHT
 ========================================================= */
 
 #galleryPage::before{
@@ -654,26 +988,26 @@ button:active{
 
     pointer-events:none;
 
-    opacity:.32;
-
     background:
 
         radial-gradient(
             circle,
-            rgba(255,255,255,.9) 1px,
+            rgba(255,255,255,.7) 1px,
             transparent 1.5px
         );
 
     background-size:
-        26px 26px;
+        31px 31px;
+
+    opacity:.45;
 }
 
 
 /* =========================================================
-   SOFT BACKGROUND BLOBS
+   DECORATIVE BACKGROUND BLOBS
 ========================================================= */
 
-.bg-blob{
+.gallery-glow{
 
     position:absolute;
 
@@ -681,61 +1015,52 @@ button:active{
 
     pointer-events:none;
 
-    filter:
-        blur(2px);
+    filter:blur(5px);
 
     opacity:.45;
 }
 
-
-.blob1{
-
-    width:260px;
-
-    height:180px;
-
-    top:-60px;
-
-    left:-60px;
-
-    background:
-        #ffc4d4;
-
-    transform:
-        rotate(-25deg);
-}
-
-
-.blob2{
+.glow1{
 
     width:300px;
 
-    height:200px;
+    height:180px;
 
-    right:-100px;
+    top:-90px;
 
-    bottom:-60px;
+    left:-80px;
 
-    background:
-        #f7b5c9;
+    background:#ffc4d5;
 
-    transform:
-        rotate(25deg);
+    transform:rotate(-25deg);
 }
 
+.glow2{
 
-.blob3{
+    width:350px;
 
-    width:150px;
+    height:220px;
 
-    height:150px;
+    right:-130px;
 
-    left:-60px;
+    bottom:-90px;
 
-    bottom:25%;
+    background:#f6b5cb;
 
-    background:
-        #ffe3ec;
+    transform:rotate(20deg);
+}
+
+.glow3{
+
+    width:170px;
+
+    height:170px;
+
+    left:-80px;
+
+    bottom:20%;
+
+    background:#ffe5ed;
 }
 
 
@@ -743,7 +1068,7 @@ button:active{
    FLOWER CORNERS
 ========================================================= */
 
-.flower-corner{
+.corner-flower{
 
     position:absolute;
 
@@ -751,53 +1076,48 @@ button:active{
 
     pointer-events:none;
 
-    font-size:55px;
-
     opacity:.72;
+
+    font-size:54px;
 
     filter:
         drop-shadow(
-            0 5px 7px
-            rgba(100,50,60,.12)
+            0 5px 8px
+            rgba(90,40,50,.1)
         );
 }
 
+.corner-flower.left{
 
-.flower-left{
+    left:-8px;
 
     top:-5px;
-
-    left:-5px;
-
 }
 
+.corner-flower.right{
 
-.flower-right{
+    right:-8px;
 
     top:-5px;
-
-    right:-5px;
 
     transform:
         scaleX(-1);
 }
 
+.corner-flower.bottom-left{
 
-.flower-bottom-left{
+    left:-4px;
 
-    bottom:-10px;
-
-    left:-5px;
+    bottom:-5px;
 
     font-size:42px;
 }
 
+.corner-flower.bottom-right{
 
-.flower-bottom-right{
+    right:-4px;
 
-    bottom:-10px;
-
-    right:-5px;
+    bottom:-5px;
 
     font-size:42px;
 
@@ -807,7 +1127,7 @@ button:active{
 
 
 /* =========================================================
-   WRAPPER
+   GALLERY CONTAINER
 ========================================================= */
 
 .gallery-wrapper{
@@ -821,7 +1141,7 @@ button:active{
     height:100vh;
 
     padding:
-        42px 28px 20px;
+        55px 30px 25px;
 
     display:flex;
 
@@ -832,94 +1152,54 @@ button:active{
 
 
 /* =========================================================
-   TOP CURVED ROPE
+   🪢 BEAUTIFUL CURVED ROPE
 ========================================================= */
 
-.rope{
+.rope-svg{
 
     position:absolute;
 
-    z-index:4;
+    top:2%;
 
-    top:3%;
+    left:1%;
 
-    left:2%;
+    width:98%;
 
-    width:96%;
+    height:115px;
 
-    height:100px;
+    z-index:5;
 
     pointer-events:none;
 }
 
 
-/*
-   Three curved rope sections.
-   This gives the same hanging shape
-   as your reference.
-*/
+.rope-main{
 
-.rope-section{
+    fill:none;
 
-    position:absolute;
+    stroke:#95654e;
 
-    height:65px;
+    stroke-width:5;
 
-    border-top:
-        5px solid
-        #95634c;
+    stroke-linecap:round;
 
-    border-radius:
-        50%;
-}
-
-
-.rope-section.one{
-
-    left:0;
-
-    top:10px;
-
-    width:35%;
-
-    transform:
-        rotate(2deg);
-}
-
-
-.rope-section.two{
-
-    left:32%;
-
-    top:0;
-
-    width:36%;
-
-    transform:
-        rotate(-1deg);
-}
-
-
-.rope-section.three{
-
-    right:0;
-
-    top:10px;
-
-    width:35%;
-
-    transform:
-        rotate(2deg);
+    filter:
+        drop-shadow(
+            0 2px 2px
+            rgba(70,40,25,.18)
+        );
 }
 
 
 /* =========================================================
-   ROPE KNOTS
+   ROPE DECORATIVE SMALL KNOTS
 ========================================================= */
 
 .rope-knot{
 
     position:absolute;
+
+    z-index:8;
 
     width:13px;
 
@@ -927,36 +1207,11 @@ button:active{
 
     border-radius:50%;
 
-    background:
-        #85543e;
+    background:#82543e;
 
     box-shadow:
         0 2px 5px
         rgba(70,40,25,.25);
-}
-
-
-.rope-knot.k1{
-
-    left:32%;
-
-    top:2px;
-}
-
-
-.rope-knot.k2{
-
-    left:50%;
-
-    top:0;
-}
-
-
-.rope-knot.k3{
-
-    left:68%;
-
-    top:2px;
 }
 
 
@@ -968,7 +1223,7 @@ button:active{
 
     position:relative;
 
-    z-index:6;
+    z-index:10;
 
     width:100%;
 
@@ -983,9 +1238,9 @@ button:active{
         repeat(2,1fr);
 
     gap:
-        34px 38px;
+        38px 38px;
 
-    margin-top:55px;
+    margin-top:48px;
 }
 
 
@@ -999,44 +1254,47 @@ button:active{
 
     min-width:0;
 
+    padding:
+        10px 10px 30px;
+
     background:
         linear-gradient(
             145deg,
             #fffefa,
-            #fffaf7
+            #fff8f5
         );
 
-    padding:
-        12px 12px 34px;
-
     border-radius:
-        8px;
+        9px;
 
     box-shadow:
-        0 13px 28px
-        rgba(91,48,53,.19),
 
-        0 2px 5px
-        rgba(91,48,53,.08);
+        0 15px 32px
+        rgba(88,45,53,.18),
+
+        0 2px 7px
+        rgba(88,45,53,.1);
 
     cursor:pointer;
 
     transition:
-        transform .35s ease,
+
+        transform .35s
+        cubic-bezier(.2,.8,.2,1),
+
         box-shadow .35s ease;
 }
 
 
 /* =========================================================
-   NATURAL FRAME ROTATION
+   NATURAL POSITIONS
 ========================================================= */
 
 .photo-frame:nth-child(1){
 
     transform:
-        rotate(-2deg);
+        rotate(-2.2deg);
 }
-
 
 .photo-frame:nth-child(2){
 
@@ -1044,45 +1302,42 @@ button:active{
         rotate(.7deg);
 }
 
-
 .photo-frame:nth-child(3){
 
     transform:
         rotate(-1.4deg);
 }
 
-
 .photo-frame:nth-child(4){
 
     transform:
-        rotate(1.5deg);
+        rotate(1.8deg);
 }
-
 
 .photo-frame:nth-child(5){
 
     transform:
-        rotate(-.8deg);
+        rotate(-.9deg);
 }
-
 
 .photo-frame:nth-child(6){
 
     transform:
-        rotate(1.7deg);
+        rotate(2deg);
 }
 
 
 .photo-frame:hover{
 
     transform:
-        translateY(-7px)
-        rotate(0deg)
+        translateY(-9px)
+        rotate(0)
         scale(1.025);
 
     box-shadow:
-        0 20px 38px
-        rgba(91,48,53,.25);
+
+        0 22px 42px
+        rgba(88,45,53,.25);
 }
 
 
@@ -1101,28 +1356,25 @@ button:active{
 
     object-fit:cover;
 
-    border-radius:
-        3px;
+    border-radius:4px;
 
     background:
-        #f7e5eb;
+        #f5dfe6;
 
     transition:
-        transform .35s ease,
-
-        filter .35s ease;
+        filter .3s ease;
 }
-
 
 .photo-frame:hover img{
 
     filter:
-        brightness(1.03);
+        brightness(1.04)
+        saturate(1.04);
 }
 
 
 /* =========================================================
-   PHOTO FRAME INNER BORDER
+   FRAME INNER DETAIL
 ========================================================= */
 
 .photo-frame::after{
@@ -1131,52 +1383,51 @@ button:active{
 
     position:absolute;
 
-    inset:7px;
+    inset:6px;
 
     border:
         1px solid
-        rgba(160,110,120,.10);
+        rgba(145,92,105,.10);
 
-    border-radius:
-        6px;
+    border-radius:7px;
 
     pointer-events:none;
 }
 
 
 /* =========================================================
-   PINK TAPE
+   PINK WASHI TAPE
 ========================================================= */
 
 .tape{
 
     position:absolute;
 
-    top:-15px;
+    z-index:12;
+
+    top:-14px;
 
     left:50%;
 
-    width:72px;
+    width:70px;
 
-    height:28px;
+    height:27px;
 
     transform:
         translateX(-50%)
-        rotate(-2deg);
+        rotate(-3deg);
 
     background:
         linear-gradient(
             90deg,
-            rgba(241,157,181,.66),
-            rgba(255,181,199,.82),
-            rgba(241,157,181,.66)
+            rgba(238,145,171,.64),
+            rgba(255,184,201,.84),
+            rgba(238,145,171,.64)
         );
-
-    z-index:8;
 
     box-shadow:
         0 2px 5px
-        rgba(100,50,60,.10);
+        rgba(90,40,50,.12);
 }
 
 
@@ -1188,21 +1439,28 @@ button:active{
 
     position:absolute;
 
+    z-index:6;
+
     left:50%;
 
-    top:-52px;
+    top:-54px;
 
     width:4px;
 
-    height:53px;
+    height:55px;
 
     transform:
         translateX(-50%);
 
     background:
-        #946149;
+        linear-gradient(
+            90deg,
+            #76503f,
+            #ad7658,
+            #76503f
+        );
 
-    z-index:5;
+    border-radius:5px;
 }
 
 
@@ -1214,43 +1472,42 @@ button:active{
 
     position:absolute;
 
-    top:-14px;
+    z-index:15;
 
     left:50%;
 
-    width:18px;
+    top:-15px;
+
+    width:19px;
 
     height:43px;
 
     transform:
         translateX(-50%);
 
-    border-radius:
-        3px;
+    border-radius:4px;
 
     background:
         linear-gradient(
             90deg,
-            #d9aa7a,
-            #b97d4e,
-            #d9aa7a
+            #d5a273,
+            #b97949,
+            #e0ae7d
         );
 
-    z-index:10;
-
     box-shadow:
-        0 2px 5px
-        rgba(70,40,25,.25);
+        0 3px 6px
+        rgba(60,35,20,.25);
 }
 
 
-.clothespin::after{
+.clothespin::before{
 
     content:"";
 
     position:absolute;
 
-    left:6px;
+    left:7px;
 
     top:0;
 
@@ -1260,6 +1517,8 @@ button:active{
 
     background:
         rgba(80,45,25,.23);
+
+    border-radius:2px;
 }
 
 
@@ -1270,92 +1529,84 @@ button:active{
 .photo-frame:nth-child(n+4)
 .hanging-string{
 
-    height:39px;
+    height:38px;
 
-    top:-38px;
+    top:-37px;
 }
 
 
 /* =========================================================
-   FLOATING HEART DECOR
+   BACKGROUND HEARTS
 ========================================================= */
 
-.gallery-heart{
+.wall-heart{
 
     position:absolute;
 
     z-index:3;
 
-    color:#e98aa4;
+    color:#e88aa3;
 
-    font-size:28px;
+    font-size:29px;
 
-    opacity:.72;
+    opacity:.65;
+
+    pointer-events:none;
 
     animation:
-        galleryHeartFloat
+        wallHeart
         4s
         ease-in-out
         infinite;
-
-    pointer-events:none;
 }
 
-
-.gallery-heart.h1{
+.wall-heart.h1{
 
     left:3%;
 
     top:30%;
 }
 
-
-.gallery-heart.h2{
-
-    right:3%;
-
-    top:22%;
-
-    animation-delay:
-        .8s;
-}
-
-
-.gallery-heart.h3{
-
-    left:3%;
-
-    bottom:25%;
-
-    animation-delay:
-        1.5s;
-}
-
-
-.gallery-heart.h4{
+.wall-heart.h2{
 
     right:3%;
 
-    bottom:16%;
+    top:25%;
 
-    animation-delay:
-        2s;
+    animation-delay:.7s;
 }
 
+.wall-heart.h3{
 
-@keyframes galleryHeartFloat{
+    left:4%;
+
+    bottom:23%;
+
+    animation-delay:1.3s;
+}
+
+.wall-heart.h4{
+
+    right:4%;
+
+    bottom:18%;
+
+    animation-delay:2s;
+}
+
+@keyframes wallHeart{
 
     0%,100%{
 
         transform:
             translateY(0)
-            rotate(-5deg);
+            rotate(-6deg);
     }
 
     50%{
 
         transform:
-            translateY(-10px)
+            translateY(-9px)
             rotate(6deg);
     }
 }
@@ -1371,28 +1622,24 @@ button:active{
 
     z-index:2;
 
-    width:12px;
+    width:11px;
 
-    height:20px;
+    height:19px;
 
     border-radius:
         80% 20% 80% 20%;
 
     background:
-        rgba(239,139,164,.38);
+        rgba(232,135,160,.42);
 
-    transform:
-        rotate(30deg);
+    pointer-events:none;
 
     animation:
-        petalFloat
+        petalMove
         7s
         ease-in-out
         infinite;
-
-    pointer-events:none;
 }
-
 
 .petal.p1{
 
@@ -1401,53 +1648,46 @@ button:active{
     top:30%;
 }
 
-
 .petal.p2{
 
-    right:10%;
+    right:12%;
 
-    top:45%;
+    top:43%;
 
-    animation-delay:
-        1.5s;
+    animation-delay:1s;
 }
-
 
 .petal.p3{
 
     left:8%;
 
-    bottom:14%;
+    bottom:16%;
 
-    animation-delay:
-        3s;
+    animation-delay:2.5s;
 }
-
 
 .petal.p4{
 
     right:8%;
 
-    bottom:30%;
+    bottom:28%;
 
-    animation-delay:
-        4s;
+    animation-delay:4s;
 }
 
-
-@keyframes petalFloat{
+@keyframes petalMove{
 
     0%,100%{
 
         transform:
             translateY(0)
-            rotate(30deg);
+            rotate(20deg);
     }
 
     50%{
 
         transform:
-            translateY(-18px)
+            translateY(-17px)
             translateX(8px)
             rotate(80deg);
     }
@@ -1455,7 +1695,7 @@ button:active{
 
 
 /* =========================================================
-   IMAGE ZOOM MODAL
+   IMAGE ZOOM
 ========================================================= */
 
 .image-modal{
@@ -1464,7 +1704,7 @@ button:active{
 
     inset:0;
 
-    z-index:100;
+    z-index:200;
 
     display:flex;
 
@@ -1472,30 +1712,29 @@ button:active{
 
     justify-content:center;
 
-    padding:25px;
+    padding:20px;
 
     background:
         rgba(
-            48,
-            25,
-            32,
-            .78
+            42,
+            20,
+            28,
+            .80
         );
 
     backdrop-filter:
-        blur(7px);
+        blur(9px);
 
     -webkit-backdrop-filter:
-        blur(7px);
+        blur(9px);
 
     opacity:0;
 
     pointer-events:none;
 
     transition:
-        opacity .35s ease;
+        opacity .4s ease;
 }
-
 
 .image-modal.show{
 
@@ -1505,17 +1744,13 @@ button:active{
 }
 
 
-/* =========================================================
-   ZOOMED IMAGE
-========================================================= */
-
 .zoomed-image{
 
     max-width:
-        min(92vw,1000px);
+        92vw;
 
     max-height:
-        88vh;
+        87vh;
 
     width:auto;
 
@@ -1524,30 +1759,25 @@ button:active{
     object-fit:contain;
 
     border:
-        9px solid
+        8px solid
         #fffaf6;
 
     border-radius:
-        8px;
+        9px;
 
     box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.4);
+        0 30px 80px
+        rgba(0,0,0,.45);
 
     transform:
-        scale(.55)
-        rotate(-3deg);
+        scale(.45)
+        rotate(-4deg);
 
     opacity:0;
 
     transition:
-        transform .55s
-        cubic-bezier(
-            .17,
-            .67,
-            .32,
-            1.3
-        ),
+        transform .65s
+        cubic-bezier(.17,.67,.32,1.3),
 
         opacity .4s ease;
 }
@@ -1558,15 +1788,11 @@ button:active{
 
     transform:
         scale(1)
-        rotate(0deg);
+        rotate(0);
 
     opacity:1;
 }
 
-
-/* =========================================================
-   CLOSE BUTTON
-========================================================= */
 
 .close-image{
 
@@ -1576,9 +1802,11 @@ button:active{
 
     right:20px;
 
-    width:45px;
+    z-index:210;
 
-    height:45px;
+    width:46px;
+
+    height:46px;
 
     padding:0;
 
@@ -1591,69 +1819,48 @@ button:active{
     justify-content:center;
 
     background:
-        rgba(255,255,255,.92);
+        rgba(255,255,255,.94);
 
-    color:#7c3448;
+    color:#7d3448;
 
-    font-size:27px;
-
-    line-height:1;
-
-    box-shadow:
-        0 5px 15px
-        rgba(0,0,0,.2);
-
-    z-index:105;
-}
-
-
-.close-image:hover{
-
-    transform:
-        scale(1.08);
+    font-size:28px;
 }
 
 
 /* =========================================================
-   MOBILE
+   📱 MOBILE — IMPORTANT
 ========================================================= */
 
 @media(max-width:600px){
 
-    /* -------------------------
+    /* ==========================================
        LETTER
-    ------------------------- */
+    ========================================== */
 
     #letterPage{
 
-        padding:
-            7px;
+        padding:7px;
     }
-
 
     h1{
 
-        font-size:
-            21px;
-    }
+        font-size:21px;
 
+        margin-bottom:10px;
+    }
 
     .envelope{
 
-        font-size:
-            88px;
+        font-size:88px;
     }
-
 
     .letter{
 
         max-height:
-            calc(100vh - 72px);
+            calc(100vh - 70px);
 
-        border-radius:
-            15px;
+        border-radius:15px;
     }
-
 
     .letter-content{
 
@@ -1666,9 +1873,8 @@ button:active{
         height:94%;
 
         padding:
-            18px 15px;
+            17px 15px;
     }
-
 
     .letter-content p{
 
@@ -1680,201 +1886,270 @@ button:active{
             );
 
         line-height:
-            1.52;
+            1.51;
     }
-
 
     .next-button{
 
         margin-top:
-            11px;
+            10px;
 
         padding:
             9px 20px;
 
-        font-size:
-            14px;
+        font-size:14px;
     }
 
 
-    /* -------------------------
-       GALLERY
-    ------------------------- */
+    /* ==========================================
+       PHOTO WALL
+    ========================================== */
+
+    #galleryPage{
+
+        padding:0;
+    }
 
     .gallery-wrapper{
 
+        width:100%;
+
+        height:100vh;
+
         padding:
-            30px 8px 10px;
+            35px 10px 15px;
+
+        align-items:
+            flex-start;
+
+        overflow-y:auto;
+
+        overflow-x:hidden;
+
+        scrollbar-width:none;
+    }
+
+    .gallery-wrapper::-webkit-scrollbar{
+
+        display:none;
     }
 
 
-    .rope{
+    /* ==========================================
+       ROPE
+    ========================================== */
 
-        top:
-            3%;
+    .rope-svg{
 
-        height:
-            70px;
+        top:2%;
+
+        left:0;
+
+        width:100%;
+
+        height:75px;
+    }
+
+    .rope-main{
+
+        stroke-width:3.5;
     }
 
 
-    .rope-section{
+    /* ==========================================
+       2 × 3 MOBILE GRID
 
-        border-width:
-            3px;
-
-        height:
-            45px;
-    }
-
-
-    .rope-knot{
-
-        width:
-            8px;
-
-        height:
-            8px;
-    }
-
+       This is the big improvement.
+    ========================================== */
 
     .photo-grid{
 
-        width:
-            100%;
+        width:100%;
+
+        display:grid;
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        grid-template-rows:
+            repeat(3,auto);
 
         gap:
-            19px 8px;
+            28px 13px;
 
-        margin-top:
-            36px;
+        margin-top:55px;
+
+        padding:
+            0 5px 30px;
     }
 
+
+    /* ==========================================
+       MOBILE FRAMES
+    ========================================== */
 
     .photo-frame{
 
         padding:
-            6px 6px 19px;
+            7px 7px 22px;
 
         border-radius:
-            5px;
+            7px;
     }
 
 
-    .photo-frame::after{
+    .photo-frame:nth-child(1){
 
-        inset:
-            4px;
+        transform:
+            rotate(-2.2deg);
     }
 
+    .photo-frame:nth-child(2){
+
+        transform:
+            rotate(1.7deg);
+    }
+
+    .photo-frame:nth-child(3){
+
+        transform:
+            rotate(1.4deg);
+    }
+
+    .photo-frame:nth-child(4){
+
+        transform:
+            rotate(-1.8deg);
+    }
+
+    .photo-frame:nth-child(5){
+
+        transform:
+            rotate(-1.5deg);
+    }
+
+    .photo-frame:nth-child(6){
+
+        transform:
+            rotate(2deg);
+    }
+
+
+    .photo-frame:active{
+
+        transform:
+            scale(.97)
+            rotate(0);
+    }
+
+
+    /* ==========================================
+       MOBILE PHOTO
+    ========================================== */
+
+    .photo-frame img{
+
+        width:100%;
+
+        aspect-ratio:
+            1 / 1;
+
+        object-fit:cover;
+
+        border-radius:3px;
+    }
+
+
+    /* ==========================================
+       MOBILE TAPE
+    ========================================== */
 
     .tape{
 
-        width:
-            39px;
+        width:43px;
 
-        height:
-            16px;
+        height:17px;
 
-        top:
-            -9px;
+        top:-9px;
     }
 
+
+    /* ==========================================
+       MOBILE STRING
+    ========================================== */
 
     .hanging-string{
 
-        width:
-            2px;
+        width:2px;
 
-        height:
-            29px;
+        height:29px;
 
-        top:
-            -29px;
-    }
-
-
-    .clothespin{
-
-        width:
-            10px;
-
-        height:
-            25px;
-
-        top:
-            -7px;
-    }
-
-
-    .clothespin::after{
-
-        left:
-            4px;
-
-        width:
-            2px;
+        top:-29px;
     }
 
 
     .photo-frame:nth-child(n+4)
     .hanging-string{
 
-        height:
-            22px;
+        height:23px;
 
-        top:
-            -21px;
+        top:-22px;
     }
 
 
-    .gallery-heart{
+    /* ==========================================
+       MOBILE CLIP
+    ========================================== */
 
-        font-size:
-            18px;
+    .clothespin{
+
+        width:11px;
+
+        height:26px;
+
+        top:-8px;
+
+        border-radius:3px;
     }
 
 
-    .flower-corner{
+    .clothespin::before{
 
-        font-size:
-            38px;
+        left:4px;
+
+        width:3px;
     }
 
 
-    .flower-bottom-left,
-    .flower-bottom-right{
+    /* ==========================================
+       MOBILE DECOR
+    ========================================== */
 
-        font-size:
-            28px;
+    .corner-flower{
+
+        font-size:36px;
+    }
+
+    .corner-flower.bottom-left,
+    .corner-flower.bottom-right{
+
+        font-size:27px;
+    }
+
+    .wall-heart{
+
+        font-size:19px;
     }
 
 
-    .close-image{
-
-        top:
-            12px;
-
-        right:
-            12px;
-
-        width:
-            40px;
-
-        height:
-            40px;
-
-        font-size:
-            23px;
-    }
-
+    /* ==========================================
+       ZOOM
+    ========================================== */
 
     .image-modal{
 
-        padding:
-            15px;
+        padding:12px;
     }
-
 
     .zoomed-image{
 
@@ -1882,55 +2157,87 @@ button:active{
             94vw;
 
         max-height:
-            82vh;
+            84vh;
 
         border-width:
             6px;
+    }
+
+    .close-image{
+
+        top:10px;
+
+        right:10px;
+
+        width:40px;
+
+        height:40px;
+
+        font-size:24px;
     }
 
 }
 
 
 /* =========================================================
-   EXTRA SMALL MOBILE
+   VERY SMALL PHONES
 ========================================================= */
 
-@media(max-width:380px){
+@media(max-width:370px){
 
     .photo-grid{
 
         gap:
-            15px 6px;
+            24px 9px;
 
-        margin-top:
-            32px;
+        padding:
+            0 3px 25px;
     }
-
 
     .photo-frame{
 
         padding:
-            5px 5px 15px;
+            5px 5px 18px;
     }
 
+    .photo-frame img{
+
+        aspect-ratio:
+            1 / 1;
+    }
 
     .tape{
 
-        width:
-            32px;
+        width:35px;
 
-        height:
-            13px;
+        height:14px;
     }
 
+}
 
-    .clothespin{
 
-        width:
-            8px;
+/* =========================================================
+   DESKTOP
+========================================================= */
 
-        height:
-            21px;
+@media(min-width:1000px){
+
+    .photo-grid{
+
+        gap:
+            42px 45px;
+    }
+
+    .photo-frame{
+
+        padding:
+            13px 13px 38px;
+    }
+
+    .photo-frame img{
+
+        aspect-ratio:
+            1 / 1;
     }
 
 }
@@ -1943,9 +2250,9 @@ button:active{
 <body>
 
 
-<!-- =======================================================
+<!-- ========================================================
      PAGE 1 — LETTER
-======================================================== -->
+========================================================= -->
 
 <section
     id="letterPage"
@@ -2000,7 +2307,7 @@ button:active{
 
         <!-- =================================================
              MAIN LETTER
-             TEXT IS UNCHANGED
+             TEXT HAS NOT BEEN CHANGED
         ================================================== -->
 
         <div
@@ -2027,65 +2334,67 @@ button:active{
 
             </div>
 
-
         </div>
 
 
     </div>
 
-
 </section>
 
 
 
-<!-- =======================================================
+<!-- ========================================================
      PAGE 2 — PHOTO WALL
-======================================================== -->
+========================================================= -->
 
 <section
     id="galleryPage"
-    class="page hidden">
+    class="page">
 
 
-    <!-- BACKGROUND ELEMENTS -->
+    <!-- BACKGROUND -->
 
-    <div class="bg-blob blob1"></div>
+    <div class="gallery-glow glow1"></div>
 
-    <div class="bg-blob blob2"></div>
+    <div class="gallery-glow glow2"></div>
 
-    <div class="bg-blob blob3"></div>
+    <div class="gallery-glow glow3"></div>
 
 
-    <div class="flower-corner flower-left">
+    <div
+        class="corner-flower left">
         🌸🌿
     </div>
 
-    <div class="flower-corner flower-right">
+    <div
+        class="corner-flower right">
         🌸🌿
     </div>
 
-    <div class="flower-corner flower-bottom-left">
+    <div
+        class="corner-flower bottom-left">
         🌷
     </div>
 
-    <div class="flower-corner flower-bottom-right">
+    <div
+        class="corner-flower bottom-right">
         🌷
     </div>
 
 
-    <div class="gallery-heart h1">
+    <div class="wall-heart h1">
         ♡
     </div>
 
-    <div class="gallery-heart h2">
+    <div class="wall-heart h2">
         ♥
     </div>
 
-    <div class="gallery-heart h3">
+    <div class="wall-heart h3">
         ♡
     </div>
 
-    <div class="gallery-heart h4">
+    <div class="wall-heart h4">
         ♥
     </div>
 
@@ -2099,43 +2408,53 @@ button:active{
     <div class="petal p4"></div>
 
 
-    <!-- =================================================
-         MAIN GALLERY
-    ================================================== -->
-
-    <div class="gallery-wrapper">
+    <div
+        class="gallery-wrapper">
 
 
-        <!-- =============================================
-             TOP CURVED ROPE
-        ============================================== -->
+        <!-- =================================================
+             CURVED ROPE
+        ================================================== -->
 
-        <div class="rope">
+        <svg
+            class="rope-svg"
+            viewBox="0 0 1000 120"
+            preserveAspectRatio="none">
 
-            <div class="rope-section one"></div>
+            <path
+                class="rope-main"
+                d="
+                M 0 30
+                C 90 95,
+                  170 95,
+                  250 30
 
-            <div class="rope-section two"></div>
+                C 330 -25,
+                  400 -25,
+                  500 30
 
-            <div class="rope-section three"></div>
+                C 600 85,
+                  680 85,
+                  750 30
 
+                C 830 -25,
+                  910 -10,
+                  1000 35
+                "
+            />
 
-            <div class="rope-knot k1"></div>
-
-            <div class="rope-knot k2"></div>
-
-            <div class="rope-knot k3"></div>
-
-        </div>
-
-
-        <!-- =============================================
-             SIX PHOTO FRAMES
-        ============================================== -->
-
-        <div class="photo-grid">
+        </svg>
 
 
-            <!-- PHOTO 1 -->
+        <!-- =================================================
+             SIX PHOTOS
+        ================================================== -->
+
+        <div
+            class="photo-grid">
+
+
+            <!-- IMAGE 1 -->
 
             <div
                 class="photo-frame"
@@ -2160,7 +2479,7 @@ button:active{
             </div>
 
 
-            <!-- PHOTO 2 -->
+            <!-- IMAGE 2 -->
 
             <div
                 class="photo-frame"
@@ -2185,7 +2504,7 @@ button:active{
             </div>
 
 
-            <!-- PHOTO 3 -->
+            <!-- IMAGE 3 -->
 
             <div
                 class="photo-frame"
@@ -2210,7 +2529,7 @@ button:active{
             </div>
 
 
-            <!-- PHOTO 4 -->
+            <!-- IMAGE 4 -->
 
             <div
                 class="photo-frame"
@@ -2235,7 +2554,7 @@ button:active{
             </div>
 
 
-            <!-- PHOTO 5 -->
+            <!-- IMAGE 5 -->
 
             <div
                 class="photo-frame"
@@ -2260,7 +2579,7 @@ button:active{
             </div>
 
 
-            <!-- PHOTO 6 -->
+            <!-- IMAGE 6 -->
 
             <div
                 class="photo-frame"
@@ -2287,17 +2606,15 @@ button:active{
 
         </div>
 
-
     </div>
-
 
 </section>
 
 
 
-<!-- =======================================================
-     IMAGE ZOOM MODAL
-======================================================== -->
+<!-- ========================================================
+     IMAGE ZOOM
+========================================================= -->
 
 <div
     class="image-modal"
@@ -2320,14 +2637,13 @@ button:active{
         src=""
         alt="Zoomed photo">
 
-
 </div>
 
 
 
-<!-- =======================================================
+<!-- ========================================================
      MUSIC
-======================================================== -->
+========================================================= -->
 
 <audio
     id="bgMusic"
@@ -2344,13 +2660,11 @@ button:active{
 
 <script>
 
-
 /* =========================================================
    OPEN LETTER
 ========================================================= */
 
 function openLetter(){
-
 
     const music =
         document.getElementById(
@@ -2388,7 +2702,6 @@ function openLetter(){
     setTimeout(
         function(){
 
-
             document
                 .getElementById("start")
                 .style.display =
@@ -2407,26 +2720,28 @@ function openLetter(){
                 "block";
 
 
+            /*
+               Bigger, longer celebration
+            */
+
             launchBalloons();
 
             launchHearts();
 
             launchSparkles();
 
-
         },
-        550
+        600
     );
 
 }
 
 
 /* =========================================================
-   NEXT → PHOTO PAGE
+   NEXT → PHOTO WALL
 ========================================================= */
 
 function showGallery(){
-
 
     const letterPage =
         document.getElementById(
@@ -2440,48 +2755,437 @@ function showGallery(){
         );
 
 
-    /*
-       Letter leaves toward left.
-    */
-
     letterPage.classList.remove(
         "active"
     );
+
 
     letterPage.classList.add(
         "exit-left"
     );
 
 
-    /*
-       Gallery enters from right.
-    */
-
-    galleryPage.classList.remove(
-        "hidden"
-    );
-
-    /*
-       Small delay lets the
-       browser see the starting
-       position before animation.
-    */
-
-    requestAnimationFrame(
-        function(){
-
-            galleryPage.classList.add(
-                "active"
-            );
-
-        }
+    galleryPage.classList.add(
+        "active"
     );
 
 }
 
 
 /* =========================================================
-   📸 ZOOM IMAGE
+   🎈 CREATE REAL BALLOONS
+========================================================= */
+
+function launchBalloons(){
+
+    /*
+       More balloons + longer lifetime.
+    */
+
+    const count = 20;
+
+
+    const colors = [
+
+        "#f28aa5",
+        "#e96f91",
+        "#ffb1c4",
+        "#d97896",
+        "#f5a0b7",
+        "#c96888"
+
+    ];
+
+
+    for(
+        let i = 0;
+        i < count;
+        i++
+    ){
+
+        const balloon =
+            document.createElement(
+                "div"
+            );
+
+
+        balloon.className =
+            "party-balloon";
+
+
+        const body =
+            document.createElement(
+                "div"
+            );
+
+
+        body.className =
+            "balloon-body";
+
+
+        const knot =
+            document.createElement(
+                "div"
+            );
+
+
+        knot.className =
+            "balloon-knot";
+
+
+        const string =
+            document.createElement(
+                "div"
+            );
+
+
+        string.className =
+            "balloon-string";
+
+
+        balloon.appendChild(
+            body
+        );
+
+
+        balloon.appendChild(
+            knot
+        );
+
+
+        balloon.appendChild(
+            string
+        );
+
+
+        /*
+           Random position
+        */
+
+        balloon.style.left =
+            (
+                Math.random() *
+                100
+            ) +
+            "vw";
+
+
+        /*
+           Random size
+        */
+
+        const size =
+            0.75 +
+            Math.random() *
+            .65;
+
+
+        balloon.style.transform =
+            `scale(${size})`;
+
+
+        /*
+           Random balloon color
+        */
+
+        balloon.style
+            .setProperty(
+                "--balloon-color",
+                colors[
+                    Math.floor(
+                        Math.random() *
+                        colors.length
+                    )
+                ]
+            );
+
+
+        /*
+           Long animation.
+
+           Some start immediately,
+           others appear slightly later.
+        */
+
+        balloon.style
+            .setProperty(
+                "--duration",
+                (
+                    10 +
+                    Math.random() * 6
+                ) +
+                "s"
+            );
+
+
+        balloon.style
+            .setProperty(
+                "--delay",
+                (
+                    Math.random() * 3
+                ) +
+                "s"
+            );
+
+
+        /*
+           Large natural sideways movement
+        */
+
+        balloon.style
+            .setProperty(
+                "--sway1",
+                (
+                    -80 +
+                    Math.random() * 160
+                ) +
+                "px"
+            );
+
+
+        balloon.style
+            .setProperty(
+                "--sway2",
+                (
+                    -100 +
+                    Math.random() * 200
+                ) +
+                "px"
+            );
+
+
+        balloon.style
+            .setProperty(
+                "--sway3",
+                (
+                    -90 +
+                    Math.random() * 180
+                ) +
+                "px"
+            );
+
+
+        balloon.style
+            .setProperty(
+                "--sway4",
+                (
+                    -70 +
+                    Math.random() * 140
+                ) +
+                "px"
+            );
+
+
+        document.body.appendChild(
+            balloon
+        );
+
+
+        /*
+           Keep them around long enough
+           for the animation to actually
+           feel like a celebration.
+        */
+
+        setTimeout(
+            function(){
+
+                balloon.remove();
+
+            },
+            20000
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ❤️ HEARTS
+========================================================= */
+
+function launchHearts(){
+
+    const hearts = [
+
+        "❤️",
+        "💕",
+        "💗",
+        "♡",
+        "♥"
+
+    ];
+
+
+    for(
+        let i = 0;
+        i < 24;
+        i++
+    ){
+
+        const heart =
+            document.createElement(
+                "div"
+            );
+
+
+        heart.className =
+            "floating-heart";
+
+
+        heart.textContent =
+            hearts[
+                Math.floor(
+                    Math.random() *
+                    hearts.length
+                )
+            ];
+
+
+        heart.style.left =
+            Math.random() *
+            100 +
+            "vw";
+
+
+        heart.style.fontSize =
+            (
+                13 +
+                Math.random() * 20
+            ) +
+            "px";
+
+
+        heart.style
+            .setProperty(
+                "--duration",
+                (
+                    8 +
+                    Math.random() * 5
+                ) +
+                "s"
+            );
+
+
+        heart.style
+            .setProperty(
+                "--delay",
+                (
+                    Math.random() * 4
+                ) +
+                "s"
+            );
+
+
+        document.body.appendChild(
+            heart
+        );
+
+
+        setTimeout(
+            function(){
+
+                heart.remove();
+
+            },
+            18000
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   ✨ SPARKLES
+========================================================= */
+
+function launchSparkles(){
+
+    const symbols = [
+
+        "✦",
+        "✧",
+        "✨",
+        "⋆",
+        "♥"
+
+    ];
+
+
+    for(
+        let i = 0;
+        i < 26;
+        i++
+    ){
+
+        const sparkle =
+            document.createElement(
+                "div"
+            );
+
+
+        sparkle.className =
+            "sparkle";
+
+
+        sparkle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        sparkle.style.left =
+            (
+                5 +
+                Math.random() * 90
+            ) +
+            "vw";
+
+
+        sparkle.style.top =
+            (
+                10 +
+                Math.random() * 75
+            ) +
+            "vh";
+
+
+        sparkle.style
+            .setProperty(
+                "--delay",
+                (
+                    Math.random() * 5
+                ) +
+                "s"
+            );
+
+
+        document.body.appendChild(
+            sparkle
+        );
+
+
+        setTimeout(
+            function(){
+
+                sparkle.remove();
+
+            },
+            9000
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   📸 ZOOM PHOTO
 ========================================================= */
 
 function zoomImage(image){
@@ -2498,42 +3202,26 @@ function zoomImage(image){
         );
 
 
-    /*
-       Set selected image.
-    */
-
     zoomed.src =
         image;
 
-
-    /*
-       Open modal.
-    */
 
     modal.classList.add(
         "show"
     );
 
-
-    /*
-       Stop page scrolling.
-    */
-
-    document.body.style.overflow =
-        "hidden";
-
 }
 
 
 /* =========================================================
-   CLOSE IMAGE
+   CLOSE PHOTO
 ========================================================= */
 
 function closeZoom(event){
 
     /*
-       If the user clicked the image itself,
-       don't close it.
+       Don't close when clicking
+       directly on the photo.
     */
 
     if(
@@ -2558,14 +3246,6 @@ function closeZoom(event){
         "show"
     );
 
-
-    document.body.style.overflow =
-        "hidden";
-
-
-    /*
-       Clear after animation.
-    */
 
     setTimeout(
         function(){
@@ -2592,7 +3272,7 @@ function closeZoom(event){
 
 
 /* =========================================================
-   ESC KEY TO CLOSE PHOTO
+   ESCAPE TO CLOSE
 ========================================================= */
 
 document.addEventListener(
@@ -2600,7 +3280,8 @@ document.addEventListener(
     function(event){
 
         if(
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ){
 
             closeZoom();
@@ -2609,383 +3290,6 @@ document.addEventListener(
 
     }
 );
-
-
-/* =========================================================
-   🎈 BALLOONS
-========================================================= */
-
-function launchBalloons(){
-
-
-    const count = 24;
-
-
-    for(
-        let i = 0;
-        i < count;
-        i++
-    ){
-
-        const balloon =
-            document.createElement(
-                "div"
-            );
-
-
-        balloon.textContent =
-            "🎈";
-
-
-        balloon.style.position =
-            "fixed";
-
-        balloon.style.bottom =
-            "-150px";
-
-        balloon.style.left =
-            Math.random() *
-            100 +
-            "vw";
-
-        balloon.style.zIndex =
-            "20";
-
-        balloon.style.pointerEvents =
-            "none";
-
-        balloon.style.fontSize =
-            (
-                60 +
-                Math.random() * 60
-            ) +
-            "px";
-
-
-        balloon.animate(
-
-            [
-
-                {
-                    transform:
-                        "translateY(0) rotate(-8deg)",
-
-                    opacity:0
-                },
-
-                {
-                    transform:
-                        "translateY(-45vh) rotate(8deg)",
-
-                    opacity:1
-                },
-
-                {
-                    transform:
-                        "translateY(-120vh) rotate(-8deg)",
-
-                    opacity:0
-                }
-
-            ],
-
-            {
-
-                duration:
-                    5500 +
-                    Math.random() * 3500,
-
-                delay:
-                    Math.random() * 1200,
-
-                easing:
-                    "linear",
-
-                fill:
-                    "forwards"
-
-            }
-
-        );
-
-
-        document.body.appendChild(
-            balloon
-        );
-
-
-        setTimeout(
-            function(){
-
-                balloon.remove();
-
-            },
-            11000
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   ❤️ HEARTS
-========================================================= */
-
-function launchHearts(){
-
-
-    const hearts = [
-
-        "❤️",
-        "💕",
-        "♥",
-        "♡",
-        "💗"
-
-    ];
-
-
-    for(
-        let i = 0;
-        i < 18;
-        i++
-    ){
-
-        const heart =
-            document.createElement(
-                "div"
-            );
-
-
-        heart.textContent =
-            hearts[
-                Math.floor(
-                    Math.random() *
-                    hearts.length
-                )
-            ];
-
-
-        heart.style.position =
-            "fixed";
-
-        heart.style.bottom =
-            "-40px";
-
-        heart.style.left =
-            Math.random() *
-            100 +
-            "vw";
-
-        heart.style.zIndex =
-            "19";
-
-        heart.style.pointerEvents =
-            "none";
-
-        heart.style.fontSize =
-            (
-                12 +
-                Math.random() * 18
-            ) +
-            "px";
-
-
-        heart.animate(
-
-            [
-
-                {
-                    transform:
-                        "translateY(0) scale(.7)",
-
-                    opacity:0
-                },
-
-                {
-                    transform:
-                        "translateY(-55vh) translateX(25px) scale(1)",
-
-                    opacity:.7
-                },
-
-                {
-                    transform:
-                        "translateY(-115vh) translateX(-25px) scale(1.2)",
-
-                    opacity:0
-                }
-
-            ],
-
-            {
-
-                duration:
-                    5000 +
-                    Math.random() * 5000,
-
-                delay:
-                    Math.random() * 2500,
-
-                easing:
-                    "linear",
-
-                fill:
-                    "forwards"
-
-            }
-
-        );
-
-
-        document.body.appendChild(
-            heart
-        );
-
-
-        setTimeout(
-            function(){
-
-                heart.remove();
-
-            },
-            11000
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   ✨ SPARKLES
-========================================================= */
-
-function launchSparkles(){
-
-
-    const symbols = [
-
-        "✦",
-        "✧",
-        "✨",
-        "♥"
-
-    ];
-
-
-    for(
-        let i = 0;
-        i < 18;
-        i++
-    ){
-
-        const sparkle =
-            document.createElement(
-                "div"
-            );
-
-
-        sparkle.textContent =
-            symbols[
-                Math.floor(
-                    Math.random() *
-                    symbols.length
-                )
-            ];
-
-
-        sparkle.style.position =
-            "fixed";
-
-        sparkle.style.left =
-            (
-                10 +
-                Math.random() * 80
-            ) +
-            "vw";
-
-        sparkle.style.top =
-            (
-                20 +
-                Math.random() * 60
-            ) +
-            "vh";
-
-        sparkle.style.zIndex =
-            "21";
-
-        sparkle.style.pointerEvents =
-            "none";
-
-        sparkle.style.fontSize =
-            "20px";
-
-
-        sparkle.animate(
-
-            [
-
-                {
-                    transform:
-                        "scale(.2) rotate(0deg)",
-
-                    opacity:0
-                },
-
-                {
-                    transform:
-                        "scale(1.2) rotate(90deg)",
-
-                    opacity:1
-                },
-
-                {
-                    transform:
-                        "scale(.3) rotate(180deg) translateY(-80px)",
-
-                    opacity:0
-                }
-
-            ],
-
-            {
-
-                duration:
-                    2000,
-
-                delay:
-                    Math.random() * 1200,
-
-                easing:
-                    "ease-out",
-
-                fill:
-                    "forwards"
-
-            }
-
-        );
-
-
-        document.body.appendChild(
-            sparkle
-        );
-
-
-        setTimeout(
-            function(){
-
-                sparkle.remove();
-
-            },
-            3500
-        );
-
-    }
-
-}
 
 </script>
 
